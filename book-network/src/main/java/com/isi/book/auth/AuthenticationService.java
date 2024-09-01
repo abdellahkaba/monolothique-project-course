@@ -11,6 +11,7 @@ import com.isi.book.user.User;
 import com.isi.book.user.UserRepository;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -34,6 +35,7 @@ public class AuthenticationService {
     private final RoleRepository roleRepository;
     private final EmailService emailService;
     private final TokenRepository tokenRepository;
+    @Value("${application.mailing.frontend.activation-url}")
 
     private String activationUrl;
 
