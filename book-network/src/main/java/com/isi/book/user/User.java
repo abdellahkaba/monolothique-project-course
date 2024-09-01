@@ -1,5 +1,7 @@
 package com.isi.book.user;
 
+import com.isi.book.book.Book;
+import com.isi.book.hisotory.BookTransactionHistory;
 import com.isi.book.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -43,6 +45,13 @@ public class User implements UserDetails, Principal {
 
     @ManyToMany(fetch = EAGER)
     private List<Role> roles;
+
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
