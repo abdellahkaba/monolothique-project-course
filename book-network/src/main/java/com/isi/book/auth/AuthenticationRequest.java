@@ -15,11 +15,11 @@ public class AuthenticationRequest {
 
     @NotEmpty(message = "Le mail est requis")
     @NotBlank(message = "Le mail est requis")
-    @Email(message = "Email is not formatted")
+    @Email(message = "L'e-mail n'est pas formaté")
     private String email;
     @NotEmpty(message = "Le Mot de pass est requis")
     @NotBlank(message = "Le Mot de pass est requis")
-    @Size(min = 8, message = "Le mail doit avoir au moins 8 caractère au minimum")
+    @Size(min = 8, message = "Le mot de pass doit avoir au moins 8 caractère au minimum")
     private String password;
 
 }
