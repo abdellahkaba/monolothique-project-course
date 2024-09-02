@@ -38,3 +38,6 @@ application:
   mailing:
     frontend:
       activation-url: http://localhost:4200/activation-account
+  file:
+    uploads:
+      photos-output-path: ./uploads
