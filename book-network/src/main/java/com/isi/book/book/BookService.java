@@ -2,6 +2,7 @@ package com.isi.book.book;
 
 
 import com.isi.book.common.PageResponse;
+import com.isi.book.exception.OperationNotPermittedException;
 import com.isi.book.hisotory.BookTransactionHistory;
 import com.isi.book.hisotory.BookTransactionHistoryRepository;
 import com.isi.book.user.User;
@@ -15,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.isi.book.book.BookSpecification.withOwnerId;
 
@@ -110,5 +112,17 @@ public class BookService {
                 allBorrowedBooks.isFirst(),
                 allBorrowedBooks.isLast()
         );
+    }
+
+    public Integer updateShareableStatus(Integer bookId, Authentication connectedUser) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new EntityNotFoundException("Aucun livre trouvé avec pièce ID:: " + bookId));
+        User user = ((User) connectedUser.getPrincipal());
+        if (!Objects.equals(book.getOwner().getId(), user.getId())) {
+            throw new OperationNotPermittedException("Vous ne pouvez pas mettre à jour le statut partageable des autres livres");
+        }
+        book.setShareable(!book.isShareable());
+        bookRepository.save(book);
+        return bookId;
     }
 }
