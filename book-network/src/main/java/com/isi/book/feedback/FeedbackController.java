@@ -25,6 +25,14 @@ public class FeedbackController {
         return ResponseEntity.ok(service.save(request, connectedUser));
     }
 
+    /***
+     *
+     * @param bookId
+     * @param page
+     * @param size
+     * @param connectedUser
+     * @return
+     */
     @GetMapping("/book/{book-id}")
     public ResponseEntity<PageResponse<FeedbackResponse>> findAllFeedbacksByBook(
             @PathVariable("book-id") Integer bookId,
@@ -34,4 +42,6 @@ public class FeedbackController {
     ) {
         return ResponseEntity.ok(service.findAllFeedbacksByBook(bookId, page, size, connectedUser));
     }
+
+
 }
