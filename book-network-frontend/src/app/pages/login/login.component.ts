@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {AuthenticationService} from "../../services/services/authentication.service";
 import {AuthenticationResponse} from "../../services/models/authentication-response";
 import {NgForOf, NgIf} from "@angular/common";
+import {TokenService} from "../../services/token/token.service";
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private authService: AuthenticationService,
+    private tokenService: TokenService
 
   ) { }
 
@@ -34,6 +36,7 @@ export class LoginComponent {
       body: this.authRequest
     }).subscribe({
       next: (res: AuthenticationResponse) => {
+        this.tokenService.token = res.token as string;
          this.router.navigate(['books']);
       },
       error: (err) => {
