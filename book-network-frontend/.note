@@ -10,3 +10,4 @@ ng g s token
 ng g c register
 npm i angular-code-input
 ng g m book --routing
+ng g c main
