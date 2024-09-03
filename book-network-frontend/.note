@@ -5,4 +5,8 @@ npm i ng-openapi-gen
 //add in package.json
 "api-gen": "ng-openapi-gen --input ./src/openapi/openapi.json --output ./src/app/services"
 npm run api-gen
+ng g c login
+ng g s token
+ng g c register
 npm i angular-code-input
+ng g m book --routing
