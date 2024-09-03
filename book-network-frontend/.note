@@ -11,3 +11,4 @@ ng g c register
 npm i angular-code-input
 ng g m book --routing
 ng g c main
+ng g c menu
