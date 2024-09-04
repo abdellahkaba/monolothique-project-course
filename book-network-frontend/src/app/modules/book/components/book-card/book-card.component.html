@@ -13,7 +13,10 @@
   </div>
   <div class="card-footer d-flex gap-2 justify-content-between align-items-center">
     <div class="d-flex gap-2">
-      5 starts
+      <app-rating [rating]="book.rate || 0"></app-rating>
+      <span class="fw-bold" *ngIf="book.rate || 0 > 0">
+        {{book.rate}}
+      </span>
     </div>
     <div class="d-flex gap-2" *ngIf="!manage">
       <i (click)="onShowDetails()" class="fas fa-circle-info text-primary"></i>
