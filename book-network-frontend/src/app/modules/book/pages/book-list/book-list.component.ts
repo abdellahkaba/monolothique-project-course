@@ -35,6 +35,9 @@ export class BookListComponent implements OnInit{
       .subscribe({
         next: (books) => {
           this.bookResponse = books;
+        },
+        error: (err) => {  // Correction : Ajout de la gestion des erreurs
+          console.error('Error fetching books:', err);
         }
       });
   }

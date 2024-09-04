@@ -13,3 +13,4 @@ ng g m book --routing
 ng g c main
 ng g c menu
 ng g c book-list
+ng g interceptor http-token
