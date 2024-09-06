@@ -18,3 +18,4 @@ ng g c card // this is for last commit
 ng g c rating
 ng g c my-books
 ng g c manage-book
+ng g c borrowed-book-list
