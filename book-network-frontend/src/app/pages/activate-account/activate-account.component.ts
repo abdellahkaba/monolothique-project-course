@@ -4,6 +4,7 @@ import {AuthenticationService} from "../../services/services/authentication.serv
 import {NgIf} from "@angular/common";
 import {CodeInputModule} from "angular-code-input";
 import {skipUntil} from 'rxjs';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-activate-account',
@@ -23,7 +24,8 @@ export class ActivateAccountComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private toastrService: ToastrService
   ) {}
 
   private confirmAccount(token: string) {
@@ -31,12 +33,12 @@ export class ActivateAccountComponent {
       token
     }).subscribe({
       next: () => {
-        this.message = 'Votre compte a été activé avec succès.\n' +
-          'Vous pouvez maintenant procéder à la connexion';
+        this.toastrService.success('Votre compte a été activé avec succès.\n' +
+          'Vous pouvez maintenant procéder à la connexion', 'Bien!')
         this.submitted = true;
       },
       error: () => {
-        this.message = 'Le jeton a expiré ou n\'est pas valide';
+        this.toastrService.warning('Le jeton a expiré ou n\'est pas valide','Attention!')
         this.submitted = true;
         this.isOkay = false;
       }

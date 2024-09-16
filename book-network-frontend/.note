@@ -22,4 +22,5 @@ ng g c borrowed-book-list
 ng g c return-books // last commit
 npm install @auth0/angular-jwt
 ng g guard auth
+npm i ngx-toastr
 

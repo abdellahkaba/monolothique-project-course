@@ -4,6 +4,7 @@ import {AuthenticationService} from "../../services/services/authentication.serv
 import {Router} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent {
   errorMsg: Array<string> = [];
   constructor(
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private toastrService: ToastrService
   ) {}
 
   login() {
@@ -35,10 +37,11 @@ export class RegisterComponent {
       body: this.registerRequest
     }).subscribe({
       next: () => {
+        this.toastrService.info('Vous pouvez activer votre compte', 'Allez y!')
         this.router.navigate(['activate-account']);
       },
       error: (err) => {
-        this.errorMsg = err.error.formatValidationErrors;
+        this.toastrService.error(err.error.validationErrors, 'Oups!')
       }
     });
   }

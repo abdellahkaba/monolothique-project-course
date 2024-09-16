@@ -6,6 +6,7 @@ import {AuthenticationService} from "../../services/services/authentication.serv
 import {AuthenticationResponse} from "../../services/models/authentication-response";
 import {NgForOf, NgIf} from "@angular/common";
 import {TokenService} from "../../services/token/token.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private authService: AuthenticationService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private toastrService: ToastrService
 
   ) { }
 
@@ -37,16 +39,16 @@ export class LoginComponent {
     }).subscribe({
       next: (res: AuthenticationResponse) => {
         this.tokenService.token = res.token as string;
+        this.toastrService.success('Connexion reussi', 'Bien!')
          this.router.navigate(['books']);
       },
-      error: (err) => {
-        console.log(err);
-        if (err.error.validationErrors) {
-          this.errorMsg = err.error.validationErrors;
-        } else {
-          this.errorMsg.push(err.error.error);
+        error: (err) => {
+          if (err.error.validationErrors) {
+            this.toastrService.error(err.error.validationErrors, 'Oups!')
+          } else {
+            this.toastrService.error(err.error.error, 'Oups!')
+          }
         }
-      }
     });
   }
 

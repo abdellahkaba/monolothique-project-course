@@ -3,6 +3,7 @@ import {PageResponseBorrowedBookResponse} from "../../../../services/models/page
 import {BookService} from "../../../../services/services/book.service";
 import {BorrowedBookResponse} from "../../../../services/models/borrowed-book-response";
 import {NgForOf, NgIf} from "@angular/common";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-return-books',
@@ -22,7 +23,8 @@ export class ReturnBooksComponent implements OnInit{
   message = '';
   level: 'success' |'error' = 'success';
   constructor(
-    private bookService: BookService
+    private bookService: BookService,
+    private toastrService: ToastrService
   ) {
   }
 
@@ -81,8 +83,7 @@ export class ReturnBooksComponent implements OnInit{
       'book-id': book.id as number
     }).subscribe({
       next: () => {
-        this.level = 'success';
-        this.message = 'Book return approved';
+        this.toastrService.success('Le retour de livre est approuvé','Bien!')
         this.findAllReturnedBooks();
       }
     });
