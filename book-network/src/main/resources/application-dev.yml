@@ -28,16 +28,12 @@ spring:
         connectiontimeout: 5000
         timeout: 3000
         writetimeout: 5000
-application:
   security:
-    jwt:
-      secret-key: 303E635200446A586E3272357583782F413F9928472B4B6250645367566B5079
-      expiration: 86400000 # a day
-      refresh-token:
-        expiration: 604800000 # 7 days
-  mailing:
-    frontend:
-      activation-url: http://localhost:4200/activation-account
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://localhost:9090/realms/book-social-network"
+application:
   file:
     uploads:
       photos-output-path: ./uploads

@@ -1,34 +1,11 @@
 package com.isi.book.auth;
 
 
-import com.isi.book.email.EmailService;
-import com.isi.book.email.EmailTemplateName;
-import com.isi.book.role.RoleRepository;
-import com.isi.book.security.JwtService;
-import com.isi.book.user.Token;
-import com.isi.book.user.TokenRepository;
-import com.isi.book.user.User;
-import com.isi.book.user.UserRepository;
-import jakarta.mail.MessagingException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.security.SecureRandom;
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-
-@Service
-@RequiredArgsConstructor
+//@Service
+//@RequiredArgsConstructor
 public class AuthenticationService {
 
-    private final UserRepository userRepository;
+   /* private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -132,6 +109,6 @@ public class AuthenticationService {
         }
 
         return codeBuilder.toString();
-    }
+    }*/
 }
 
