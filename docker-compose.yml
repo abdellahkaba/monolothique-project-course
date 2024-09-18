@@ -41,3 +41,5 @@ networks:
 volumes:
   postgres:
     driver: local
+  keycloak:
+    driver: local

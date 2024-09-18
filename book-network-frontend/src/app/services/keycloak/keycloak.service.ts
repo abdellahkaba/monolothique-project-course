@@ -42,6 +42,7 @@ export class KeycloakService {
   }
 
   logout() {
+    // return  this.keycloak.accountManagement();
     // Vérification que keycloak est défini avant d'appeler la méthode
     return this.keycloak?.logout({ redirectUri: 'http://localhost:4200' });
   }

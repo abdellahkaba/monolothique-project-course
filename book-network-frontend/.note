@@ -24,4 +24,84 @@ npm install @auth0/angular-jwt
 ng g guard auth
 npm i ngx-toastr
 npm i keycloak-js
+########################################################
+C:\Users\Kaba\Documents\spring\monolothique-spring-angular>docker ps
+CONTAINER ID   IMAGE                              COMMAND                  CREATED       STATUS                 PORTS                                            NAMES
+165d6a3bfc14   maildev/maildev                    "bin/maildev"            3 hours ago   Up 3 hours (healthy)   0.0.0.0:1025->1025/tcp, 0.0.0.0:1080->1080/tcp   mail-dev-bsn
+c2deeb0c4068   quay.io/keycloak/keycloak:24.0.2   "/opt/keycloak/bin/k…"   3 hours ago   Up 3 hours             8443/tcp, 0.0.0.0:9090->8080/tcp                 keycloak-bsn
+0298e1f9889d   postgres                           "docker-entrypoint.s…"   3 hours ago   Up 3 hours             0.0.0.0:5432->5432/tcp                           postgres-sql-bsn
+
+C:\Users\Kaba\Documents\spring\monolothique-spring-angular>docker exec -it c2deeb0c4068 /bin/sh
+sh-5.1$ pwd
+/
+sh-5.1$ ls -l
+total 56
+dr-xr-xr-x   2 root root 4096 Aug  9  2021 afs
+lrwxrwxrwx   1 root root    7 Aug  9  2021 bin -> usr/bin
+dr-xr-xr-x   2 root root 4096 Aug  9  2021 boot
+drwxr-xr-x   5 root root  340 Sep 18 08:59 dev
+drwxr-xr-x   1 root root 4096 Sep 18 08:59 etc
+drwxr-xr-x   2 root root 4096 Aug  9  2021 home
+lrwxrwxrwx   1 root root    7 Aug  9  2021 lib -> usr/lib
+lrwxrwxrwx   1 root root    9 Aug  9  2021 lib64 -> usr/lib64
+drwxr-xr-x   2 root root 4096 Aug  9  2021 media
+drwxr-xr-x   2 root root 4096 Aug  9  2021 mnt
+drwxr-xr-x   1 root root 4096 Mar 24 22:34 opt
+dr-xr-xr-x 243 root root    0 Sep 18 08:59 proc
+dr-xr-x---   3 root root 4096 Feb 29  2024 root
+drwxr-xr-x   4 root root 4096 Feb 29  2024 run
+lrwxrwxrwx   1 root root    8 Aug  9  2021 sbin -> usr/sbin
+drwxr-xr-x   2 root root 4096 Aug  9  2021 srv
+dr-xr-xr-x  11 root root    0 Sep 18 08:59 sys
+drwxrwxrwt   1 root root 4096 Sep 18 09:00 tmp
+drwxr-xr-x   1 root root 4096 Mar 24 22:33 usr
+drwxr-xr-x   1 root root 4096 Mar 24 22:33 var
+sh-5.1$ cd opt/
+sh-5.1$ ls -l
+total 8
+drwxr-xr-x 1 keycloak root 4096 Sep 18 09:00 keycloak
+sh-5.1$ cd keycloak/
+sh-5.1$ ls -l
+total 48
+drwxrwxr-x 3 keycloak root  4096 Mar 24 22:27 bin
+drwxrwxr-x 3 keycloak root  4096 Mar 24 22:33 conf
+drwxrwxr-x 1 keycloak root  4096 Sep 18 09:00 data
+drwxrwxr-x 1 keycloak root  4096 Mar 24 22:27 lib
+-rw-rw-r-- 1 keycloak root 11358 Mar 24 22:13 LICENSE.txt
+drwxrwxr-x 2 keycloak root  4096 Mar 24 22:33 providers
+-rw-rw-r-- 1 keycloak root   492 Mar 24 22:13 README.md
+drwxrwxr-x 2 keycloak root  4096 Mar 24 22:33 themes
+-rw-rw-r-- 1 keycloak root    26 Mar 24 22:13 version.txt
+sh-5.1$ cd bin/
+sh-5.1$ ls -l
+total 40
+drwxrwxr-x 3 keycloak root 4096 Mar 24 22:27 client
+-rwxrwxr-x 1 keycloak root 1009 Mar 24 22:13 federation-sssd-setup.sh
+-rw-rw-r-- 1 keycloak root  832 Mar 24 22:13 kcadm.bat
+-rwxrwxr-x 1 keycloak root  822 Mar 24 22:13 kcadm.sh
+-rwxrwxr-x 1 keycloak root 6684 Mar 24 22:13 kc.bat
+-rw-rw-r-- 1 keycloak root  853 Mar 24 22:13 kcreg.bat
+-rwxrwxr-x 1 keycloak root  842 Mar 24 22:13 kcreg.sh
+-rwxrwxr-x 1 keycloak root 5968 Mar 24 22:13 kc.sh
+sh-5.1$ ./kc.sh export --file book-social-network --realm book-social-network
+2024-09-18 11:47:06,536 WARN  [org.infinispan.CONFIG] (keycloak-cache-init) ISPN000569: Unable to persist Infinispan internal caches as no global state enabled
+2024-09-18 11:47:06,773 INFO  [org.infinispan.CONTAINER] (keycloak-cache-init) ISPN000556: Starting user marshaller 'org.infinispan.jboss.marshalling.core.JBossUserMarshaller'
+2024-09-18 11:47:07,102 INFO  [org.keycloak.quarkus.runtime.hostname.DefaultHostnameProvider] (main) Hostname settings: Base URL: <unset>, Hostname: <request>, Strict HTTPS: false, Path: <request>, Strict BackChannel: false, Admin URL: <unset>, Admin: <request>, Port: -1, Proxied: false
+2024-09-18 11:47:12,306 WARN  [io.quarkus.agroal.runtime.DataSources] (JPA Startup Thread) Datasource <default> enables XA but transaction recovery is not enabled. Please enable transaction recovery by setting quarkus.transaction-manager.enable-recovery=true, otherwise data may be lost if the application is terminated abruptly
+2024-09-18 11:47:15,087 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_202888, Site name: null
+2024-09-18 11:47:15,097 INFO  [org.keycloak.broker.provider.AbstractIdentityProviderMapper] (main) Registering class org.keycloak.broker.provider.mappersync.ConfigSyncEventListener
+2024-09-18 11:47:17,203 INFO  [org.keycloak.services] (main) KC-SERVICES0034: Export of realm 'book-social-network' requested.
+2024-09-18 11:47:17,203 INFO  [org.keycloak.exportimport.singlefile.SingleFileExportProvider] (main) Exporting realm 'book-social-network' into file /opt/keycloak/bin/book-social-network
+2024-09-18 11:47:20,479 INFO  [org.keycloak.services] (main) KC-SERVICES0035: Export finished successfully
+2024-09-18 11:47:20,570 INFO  [io.quarkus] (main) Keycloak 24.0.2 on JVM (powered by Quarkus 3.8.3) started in 16.983s. Listening on:
+2024-09-18 11:47:20,571 INFO  [io.quarkus] (main) Profile import_export activated.
+2024-09-18 11:47:20,571 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, keycloak, logging-gelf, narayana-jta, reactive-routes, resteasy-reactive, resteasy-reactive-jackson, smallrye-context-propagation, vertx]
+2024-09-18 11:47:20,739 INFO  [io.quarkus] (main) Keycloak stopped in 0.151s
+sh-5.1$ ls -l
+total 120
+-rw-r--r-- 1 keycloak root 78327 Sep 18 11:47 book-social-network
+drwxrwxr-x 3 keycloak root  4096 Mar 24 22:27 client
+-rwxrwxr-x 1 keycloak root  1009 Mar 24 22:13 federation-sssd-setup.sh
+
+C:\Users\Kaba\Documents\spring\monolothique-spring-angular>
 
