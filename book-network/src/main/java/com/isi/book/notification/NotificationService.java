@@ -15,7 +15,7 @@ public class NotificationService {
         log.info("Envoi d'une notification WS à {} avec la charge utile {}", userId, notification);
         messagingTemplate.convertAndSendToUser(
                 userId,
-                "/notification",
+                "/notifications",
                 notification
         );
     }
