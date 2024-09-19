@@ -1,0 +1,3 @@
+docker compose up -d
+docker build -t bsn/bsn:1.0.0 -f ../docker/backend/Dockerfile . (dans target)
+mvn clean package -DskipTests
