@@ -1,4 +1,3 @@
-# Build stage
 FROM maven:3.8.7-openjdk-18 AS build
 WORKDIR /build
 COPY pom.xml .
@@ -10,18 +9,14 @@ RUN mvn clean package -DskipTests
 FROM amazoncorretto:17
 ARG PROFILE=dev
 ARG APP_VERSION=1.0.0
-# define few things
 
 WORKDIR /app
-COPY --from=build /build/target/book-network-*.jar /app/
+COPY --from=build /build/target/book-netowrk-*.jar /app/
 
 EXPOSE 8080
 
 ENV DB_URL=jdbc:postgresql://postgres-sql-bsn:5432/book_db
-
 ENV ACTIVE_PROFILE=${PROFILE}
 ENV JAR_VERSION=${APP_VERSION}
 
-
-
-CMD java -jar -Dspring.profiles.actives=${ACTIVE_PROFILE} -Dspring.datasource.url=${DB_URL} book-network-${APP_VERSION}.jar
+CMD java -jar -Dspring.profiles.active=${ACTIVE_PROFILE} -Dspring.datasource.url=${DB_URL} book-netowrk-${JAR_VERSION}.jar

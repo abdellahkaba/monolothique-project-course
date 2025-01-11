@@ -42,26 +42,10 @@ export class BookService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
   }
-
-  /** Path part for operation `findAllBooks()` */
   static readonly FindAllBooksPath = '/books';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `findAllBooks()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
   findAllBooks$Response(params?: FindAllBooks$Params, context?: HttpContext): Observable<StrictHttpResponse<PageResponseBookResponse>> {
     return findAllBooks(this.http, this.rootUrl, params, context);
   }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `findAllBooks$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
   findAllBooks(params?: FindAllBooks$Params, context?: HttpContext): Observable<PageResponseBookResponse> {
     return this.findAllBooks$Response(params, context).pipe(
       map((r: StrictHttpResponse<PageResponseBookResponse>): PageResponseBookResponse => r.body)
@@ -71,48 +55,20 @@ export class BookService extends BaseService {
   /** Path part for operation `saveBook()` */
   static readonly SaveBookPath = '/books';
 
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `saveBook()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
   saveBook$Response(params: SaveBook$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
     return saveBook(this.http, this.rootUrl, params, context);
   }
 
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `saveBook$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
   saveBook(params: SaveBook$Params, context?: HttpContext): Observable<number> {
     return this.saveBook$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
     );
   }
-
-  /** Path part for operation `uploadBookCoverPicture()` */
   static readonly UploadBookCoverPicturePath = '/books/cover/{book-id}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `uploadBookCoverPicture()` instead.
-   *
-   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
-   */
   uploadBookCoverPicture$Response(params: UploadBookCoverPicture$Params, context?: HttpContext): Observable<StrictHttpResponse<{
 }>> {
     return uploadBookCoverPicture(this.http, this.rootUrl, params, context);
   }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `uploadBookCoverPicture$Response()` instead.
-   *
-   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
-   */
   uploadBookCoverPicture(params: UploadBookCoverPicture$Params, context?: HttpContext): Observable<{
 }> {
     return this.uploadBookCoverPicture$Response(params, context).pipe(
@@ -121,33 +77,16 @@ export class BookService extends BaseService {
 } => r.body)
     );
   }
-
-  /** Path part for operation `borrowBook()` */
   static readonly BorrowBookPath = '/books/borrow/{book-id}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `borrowBook()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
   borrowBook$Response(params: BorrowBook$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
     return borrowBook(this.http, this.rootUrl, params, context);
   }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `borrowBook$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
   borrowBook(params: BorrowBook$Params, context?: HttpContext): Observable<number> {
     return this.borrowBook$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
     );
   }
 
-  /** Path part for operation `updateShareableStatus()` */
   static readonly UpdateShareableStatusPath = '/books/shareable/{book-id}';
 
   /**
